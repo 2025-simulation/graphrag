@@ -1,3 +1,23 @@
+### usage
+
+initialize the root directory
+``` shell
+graphrag index --root ./ragtest/
+```
+
+ask question
+
+``` shell
+# Local search (focused on specific entities)
+graphrag query --root ./ragtest --method local --query "Tell me about Scrooge's relationship with Jacob Marley"
+
+# Different global search
+graphrag query --root ./ragtest --method global --query "What are the main conflicts in the story?"
+
+# Basic search
+graphrag query --root ./ragtest --method basic --query "Who are the main characters?"
+```
+
 # GraphRAG
 
 👉 [Microsoft Research Blog Post](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)<br/>
