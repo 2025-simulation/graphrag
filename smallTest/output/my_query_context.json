@@ -1,0 +1,330 @@
+{
+  "reports": [
+    {
+      "id": "0",
+      "title": "VTK Elevation and Color Mapping Visualization Pipeline",
+      "content": "# VTK Elevation and Color Mapping Visualization Pipeline\n\nThis community comprises interrelated components within the Visualization Toolkit (VTK) ecosystem that enable elevation-based scalar generation and color mapping for 3D geometric data. Core entities include VTKConeSource (a geometry generator), VTKElevationFilter and VTK Elevation Filter (scalar data processors), COLOR MAPPER (a color assignment node), COLOR RAMP (a lookup table provider), and supporting infrastructure like the VTK to Blender Mesh converter. These components form a modular visualization pipeline where geometric data is generated, annotated with elevation-derived scalars, and rendered using color gradients defined by user-configurable ramps. The Visualization Toolkit serves as the foundational framework integrating all these elements.\n\n## VTKElevationFilter and VTK Elevation Filter provide elevation-based scalar annotation\n\nThe VTKElevationFilter and VTK Elevation Filter (vtkElevationFilter) are data processing components within the Visualization Toolkit that assign scalar values to geometric vertices based on their spatial position—typically elevation along a defined axis. These filters compute a linear interpolation between user-specified low and high points to produce normalized scalar values (often between 0.0 and 1.0), which are then used downstream for visualization purposes such as color mapping. This functionality is essential for representing topographical or height-based variations in 3D models, making it particularly valuable in scientific visualization, terrain modeling, and engineering simulations. [Data: Entities (2, 10); Relationships (3, 16)]\n\n## COLOR MAPPER relies on COLOR RAMP for visual encoding of scalar data\n\nThe COLOR MAPPER functions as a critical visualization node that translates scalar data—such as elevation values—into colors using a lookup table provided by the COLOR RAMP. The COLOR RAMP defines the color gradient or discrete palette that maps numerical ranges to specific hues, while the COLOR MAPPER applies this mapping to render geometric datasets with intuitive visual cues. This interdependence ensures consistent and meaningful color representation across visualization pipelines. Configurable parameters like `auto_range` and `color_by` allow fine-grained control over how scalar fields are visually encoded. This relationship is fundamental to data-driven rendering in VTK-based systems. [Data: Entities (3, 4); Relationships (5)]\n\n## VTKConeSource serves as a foundational geometry generator in the pipeline\n\nVTKConeSource is a source node in the Visualization Toolkit that generates basic 3D cone geometry, providing polygonal mesh data without initial scalar attributes. It is highly configurable, allowing users to define parameters such as height, base radius, resolution, direction, and whether the base is capped. As a procedural geometry source, it often serves as an entry point in visualization pipelines, supplying raw mesh data that can be processed by downstream filters like the elevation filter. Its role exemplifies VTK’s modular architecture, where simple geometric primitives are combined with data filters to produce rich visual outputs. [Data: Entities (1); Relationships (2, 1)]\n\n## The Visualization Toolkit (VTK) is the unifying framework for all components\n\nThe Visualization Toolkit (VTK) serves as the foundational software framework that integrates all entities in this community. Components such as VTKConeSource, VTKElevationFilter, COLOR MAPPER, and the VTK to Blender Mesh converter are explicitly described as VTK-based or as part of the VTK ecosystem. VTK’s modular pipeline architecture enables these nodes to be chained together—geometry is generated, annotated with scalars, mapped to colors, and exported to external renderers like Blender. This interoperability and standardization under VTK make the system flexible and widely applicable across scientific and engineering domains. [Data: Entities (6); Relationships (2, 8, 9)]\n\n## A complete visualization pipeline flows from geometry creation to color rendering\n\nThe data describes a coherent visualization workflow: VTKConeSource generates a cone mesh, which is then processed by VTKElevationFilter (or VTK Elevation Filter) to add elevation-derived scalar values. These scalars are passed to the COLOR MAPPER, which uses a COLOR RAMP-defined lookup table to assign colors based on scalar magnitude. This pipeline enables intuitive visual representation of spatial variation—such as height—through color gradients. Such a sequence is typical in VTK applications and demonstrates the framework’s strength in transforming raw geometry into analytically informative visualizations. [Data: Relationships (1, 3, 5, 16)]\n\n## VTKElevationFilterType defines the node implementation for elevation filtering\n\nVTKElevationFilterType is a node type within the visualization framework that implements the functionality of the VTKElevationFilter. It is responsible for adding scalar data to geometric vertices based on their position along a user-defined axis between low and high points. This node type serves as the software abstraction that enables the elevation filtering operation to be integrated into larger node-based pipelines, likely within a graphical or scripting environment that uses VTK under the hood. Its existence underscores the layered architecture of VTK-based systems, where logical node types map to concrete VTK classes. [Data: Entities (8); Relationships (12)]\n\n## Integration with Blender is enabled via a dedicated conversion node\n\nThe 'VTK To Blender Mesh' node acts as a bridge between the Visualization Toolkit and Blender, a popular 3D graphics software. This conversion node translates VTK output—such as processed mesh data with scalar attributes—into a format usable within Blender’s rendering environment. By relying on VTK as the data source, this component extends the reach of VTK-based visualizations into creative and production-grade 3D workflows. This interoperability enhances the utility of VTK pipelines beyond scientific software into broader digital content creation ecosystems. [Data: Entities (5); Relationships (9)]\n\n## No legal, reputational, or security risks are associated with the community\n\nAll entities in the community are technical software components related to data visualization within the VTK framework. There are no indications of legal compliance issues, controversial affiliations, security vulnerabilities, or reputational concerns. The descriptions focus exclusively on functional roles in visualization pipelines, with no references to real-world events, misuse, or regulatory scrutiny. Consequently, the community poses minimal risk and is primarily of technical interest to developers and data visualization practitioners. [Data: Entities (1, 2, 3, 4, 5, 6, 8, 10); Relationships (1, 2, 3, 5, 8, 9, 12, 16)]"
+    }
+  ],
+  "entities": [
+    {
+      "id": "0",
+      "entity": "KAZURE ZHENG",
+      "description": "Kazure Zheng is a technical author and contributor specializing in visualization pipelines that integrate VTK (Visualization Toolkit) with Blender, particularly through node-based systems for scientific and geometric data processing. Zheng has authored or co-authored multiple technical documents that explain the functionality and application of specific VTK nodes within this pipeline. These include detailed guides on the VTKConeSource node, which generates cone geometry, and the VTKElevationFilter node, which applies elevation-based rendering references to mesh data—often used to enhance visual depth or encode scalar values via height. Zheng also documented the VTKSphereSource node, outlining its parameters for generating spherical geometry in visualization workflows.\n\nIn addition, Kazure Zheng created documentation for color mapping and gradient tools essential to data visualization in this environment. This includes the “颜色映射 COLOR MAPPER” document, which explains the BVTK_Node_ColorMapperType node used to map scalar data to colors, and the “颜色渐变 COLOR RAMP” guide, which describes how to define and apply color gradients for visual representation. Furthermore, Zheng contributed an overview titled “JSON 文件的格式概述” (Overview of JSON File Format), which details the structure of JSON files used to store and process workflow data, including nodes and their interconnections within the VTK-Blender system.\n\nCollectively, Zheng’s work demonstrates a deep engagement with the technical bridge between VTK’s scientific visualization capabilities and Blender’s 3D modeling environment. The documentation consistently focuses on enabling users to convert, manipulate, and render mesh data through a node-based interface, facilitating tasks such as geometry generation, elevation-based shading, and color mapping. While the descriptions provided focus exclusively on Kazure Zheng’s contributions, unrelated entity data—such as John Smith, Acme Corporation, and New York City—appears to be extraneous and unrelated to Zheng’s work; therefore, it is excluded from this coherent summary. Kazure Zheng emerges as a key contributor to the documentation and possibly the development of tools that enable VTK data to be effectively visualized and processed within Blender.",
+      "number of relationships": "5",
+      "in_context": true
+    },
+    {
+      "id": "13",
+      "entity": "VTK",
+      "description": "VTK (Visualization Toolkit) is an open-source software system for 3D computer graphics, image processing, and visualization; provides data that is converted into Blender mesh format",
+      "number of relationships": "1",
+      "in_context": true
+    },
+    {
+      "id": "9",
+      "entity": "VTKELEVATIONFILTER DOCUMENTATION EVENT",
+      "description": "The creation and structuring of technical documentation explaining the VTKElevationFilter node, authored by Kazure Zheng, detailing its purpose, parameters, and usage in visualization workflows",
+      "number of relationships": "1",
+      "in_context": true
+    },
+    {
+      "id": "12",
+      "entity": "BLENDER",
+      "description": "Blender is an open-source 3D creation software suite used for modeling, animation, simulation, and rendering; referenced here as the target environment for mesh data conversion",
+      "number of relationships": "1",
+      "in_context": true
+    },
+    {
+      "id": "5",
+      "entity": "VTK TO BLENDER MESH",
+      "description": "A conversion node that translates VTK output into a mesh usable in Blender, the 3D graphics software",
+      "number of relationships": "2",
+      "in_context": true
+    },
+    {
+      "id": "14",
+      "entity": "BVTK_NODE_VTKTOBLENDERMESHTYPE",
+      "description": "BVTK_Node_VTKToBlenderMeshType is a specific node type in a Blender-VTK integration system that converts VTK data into Blender-compatible mesh data",
+      "number of relationships": "3",
+      "in_context": true
+    },
+    {
+      "id": "1",
+      "entity": "VTKCONESOURCE",
+      "description": "vtkConeSource is a data source node within the Visualization Toolkit (VTK) framework, designed to generate cone-shaped three-dimensional geometric objects. As a fundamental geometry generator in VTK, it produces mesh data representing a cone without associated scalar values, making it suitable for basic visualization, geometric modeling, and scene construction tasks. The cone geometry created by vtkConeSource is highly configurable, allowing users to specify key parameters such as height, base radius, center position, and orientation (direction). Additional customizable attributes include the cone’s angle, resolution—controlling the smoothness or faceting of the surface by defining the number of facets around the cone—and whether the base of the cone is capped (i.e., closed with a flat surface) or left open. These parameters enable precise control over the shape and appearance of the generated cone, supporting a wide range of applications in scientific visualization, computer graphics, and simulation. As part of VTK’s suite of source objects, vtkConeSource serves as an entry point in visualization pipelines, providing polygonal data that can be further processed, rendered, or combined with other geometric primitives. Its role as a basic yet versatile geometry generator underscores its utility in both educational contexts and complex visualization workflows within the VTK ecosystem.",
+      "number of relationships": "3",
+      "in_context": true
+    },
+    {
+      "id": "7",
+      "entity": "VTKSPHERESOURCE",
+      "description": "VTKSphereSource is a software component or computational event used to generate spherical geometry in a visualization toolkit environment",
+      "number of relationships": "1",
+      "in_context": true
+    },
+    {
+      "id": "8",
+      "entity": "VTKELEVATIONFILTERTYPE",
+      "description": "VTKElevationFilterType is a node type in a visualization framework (likely based on VTK – Visualization Toolkit) that adds scalar data to geometric vertices based on their position along a specified axis defined by low and high points",
+      "number of relationships": "1",
+      "in_context": true
+    },
+    {
+      "id": "4",
+      "entity": "COLOR RAMP",
+      "description": "COLOR RAMP is a component used in data visualization systems to provide a color lookup table that defines how scalar values are mapped to specific colors. It functions as a node that supplies a gradient or discrete set of colors, which the Color Mapper node utilizes to assign visual colors based on input scalar data ranges. The Color Ramp essentially serves as the reference that determines the color scheme applied during the mapping process, enabling users to visually interpret numerical or quantitative data through color variation. This component is integral to workflows where data-driven color representation is required, such as in scientific visualization, geographic information systems, or analytical dashboards.\n\nSeparately from the technical description of COLOR RAMP, the provided data also includes information about unrelated entities: John Smith, a person employed by Acme Corporation; Acme Corporation, an organization located in New York City; and New York City itself, which serves as the location of the corporation. These entities and their relationships—John Smith being employed by Acme Corporation, and Acme Corporation being located in New York City—are distinct from the COLOR RAMP component and appear to be included incidentally or due to data formatting artifacts. There is no indication that John Smith, Acme Corporation, or New York City are directly associated with the functionality, development, or application of the COLOR RAMP component.\n\nTherefore, the comprehensive summary focuses on COLOR RAMP as a visualization tool: it is a lookup table component that defines color mappings for scalar data and works in conjunction with the Color Mapper node to apply those colors consistently across a dataset. The additional entity and relationship data do not pertain to COLOR RAMP and are treated as extraneous context.",
+      "number of relationships": "4",
+      "in_context": true
+    },
+    {
+      "id": "6",
+      "entity": "VISUALIZATION TOOLKIT",
+      "description": "",
+      "number of relationships": "5",
+      "in_context": true
+    },
+    {
+      "id": "10",
+      "entity": "VTK ELEVATION FILTER",
+      "description": "The VTK Elevation Filter, formally known as vtkElevationFilter, is a data processing filter within the Visualization Toolkit (VTK) framework. Its primary function is to generate scalar values based on the spatial elevation of points in a dataset. These scalar values are typically normalized to a range between 0.0 and 1.0, making them well-suited for use as input to color mapping operations in visualization pipelines. By assigning scalar data derived from geometric elevation—often computed along a specified axis or between two user-defined endpoints—the filter enables intuitive visual representation of three-dimensional structures through color gradients or other scalar-dependent rendering techniques. This capability is particularly useful in scientific visualization, where highlighting variations in height or depth across a surface or volume can reveal important structural or topographical features. As part of VTK’s extensive suite of data transformation and visualization tools, vtkElevationFilter serves as a foundational component for preparing geometric data for enhanced visual analysis.",
+      "number of relationships": "2",
+      "in_context": true
+    },
+    {
+      "id": "2",
+      "entity": "VTKELEVATIONFILTER",
+      "description": "VTKELEVATIONFILTER is a data processing filter within the Visualization Toolkit (VTK) pipeline designed to generate elevation-based scalar values for geometric data. Specifically, it assigns scalar values to the vertices of input geometry based on their height or position along a specified axis—typically used to represent elevation. These scalar values can then be utilized in visualization pipelines to drive color mapping, enabling intuitive visual representation of spatial variation across a surface. For example, in a common use case, the VTKELEVATIONFILTER is applied to a 3D cone to color its surface according to height, with different elevations rendered in distinct colors. As a VTK-based filter node, it integrates seamlessly into VTK’s modular architecture, allowing users to enhance geometric datasets with meaningful scalar attributes that support advanced rendering and analysis. The filter operates by computing a linear interpolation of scalar values between a user-defined low point and high point, effectively mapping geometric position to a continuous range of scalar values. This functionality makes VTKELEVATIONFILTER particularly useful in scientific visualization, terrain modeling, and any application where height-dependent visual cues improve data interpretation.",
+      "number of relationships": "4",
+      "in_context": true
+    },
+    {
+      "id": "3",
+      "entity": "COLOR MAPPER",
+      "description": "COLOR MAPPER is a visualization node—specifically implemented as BVTK_Node_ColorMapperType—designed to map scalar data, such as elevation or other numerical attributes, to colors for the purpose of rendering geometric models. As a VTK-based component, it operates within a visualization pipeline and relies on scalar input to function effectively. The node utilizes a lookup table to translate scalar values into corresponding colors, enabling intuitive visual representation of data-driven attributes across 3D models or datasets.\n\nThe COLOR MAPPER functions in coordination with other nodes in the visualization system, particularly taking instructions or parameters from the Color Ramp node, which defines how colors should be distributed across the scalar range. Key configurable parameters of the COLOR MAPPER include `auto_range`, which automatically determines the range of scalar values to map, and `color_by`, which specifies the scalar field to be used for color mapping. These settings allow users to fine-tune how data is visually encoded, supporting both automatic and manual control over the color-mapping process.\n\nBy converting abstract scalar data into a color spectrum, the COLOR MAPPER enhances the interpretability of complex datasets in scientific visualization, geographic information systems, and engineering simulations. Its integration with VTK (Visualization Toolkit) ensures compatibility with a wide range of data formats and rendering backends, making it a flexible and essential tool in data-driven visualization workflows. Overall, the COLOR MAPPER serves as a critical bridge between raw numerical data and its visual representation, enabling users to perceive patterns, gradients, and anomalies through color.",
+      "number of relationships": "5",
+      "in_context": true
+    }
+  ],
+  "relationships": [
+    {
+      "id": "7",
+      "source": "COLOR MAPPER",
+      "target": "VISUALIZATION TOOLKIT",
+      "description": "Color Mapper is based on VTK's scalar mapping and visualization capabilities",
+      "weight": "8.0",
+      "links": "5",
+      "in_context": true
+    },
+    {
+      "id": "3",
+      "source": "VTKELEVATIONFILTER",
+      "target": "COLOR MAPPER",
+      "description": "vtkElevationFilter and COLOR MAPPER work in tandem within a visualization pipeline to enable color-based rendering of geometric data based on elevation. Specifically, vtkElevationFilter is responsible for generating scalar data that represents elevation values across the surface or volume of the input dataset. This scalar data is computed by mapping the spatial coordinates of the input geometry—typically along a specified axis or between two defined endpoints—into a continuous range of elevation values. Once this elevation-derived scalar field is produced, it is passed downstream to the COLOR MAPPER node. The COLOR MAPPER then utilizes this scalar data to apply a color map, effectively translating numerical elevation values into a visual color gradient that enhances the interpretability and aesthetic quality of the rendered output. In essence, vtkElevationFilter provides the foundational data required for the COLOR MAPPER to perform its function, making the two components interdependent in workflows where elevation-based coloring is desired. This pipeline is commonly used in scientific visualization to highlight topographical features, depth variations, or height differences in 3D models and datasets.",
+      "weight": "17.0",
+      "links": "5",
+      "in_context": true
+    },
+    {
+      "id": "4",
+      "source": "VTKELEVATIONFILTER",
+      "target": "VISUALIZATION TOOLKIT",
+      "description": "vtkElevationFilter is a filter within the Visualization Toolkit (VTK) framework",
+      "weight": "9.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "5",
+      "source": "COLOR MAPPER",
+      "target": "COLOR RAMP",
+      "description": "The Color Mapper and Color Ramp are closely integrated components in a color-mapping system. The Color Ramp serves as the lookup table (LUT) that defines a sequence or gradient of colors, while the Color Mapper utilizes this Color Ramp to assign specific colors to scalar values. In essence, the Color Mapper relies on the Color Ramp as its primary reference for translating numerical data into a visual color representation. This relationship enables the system to map a range of scalar inputs—such as temperature readings, elevation values, or other continuous data—onto a corresponding spectrum of colors defined by the Color Ramp. By using the Color Ramp as its lookup table, the Color Mapper ensures consistent and visually meaningful color assignments based on the underlying data values. Together, these components facilitate effective data visualization by bridging quantitative information with intuitive color coding.",
+      "weight": "10.0",
+      "links": "5",
+      "in_context": true
+    },
+    {
+      "id": "8",
+      "source": "COLOR RAMP",
+      "target": "VISUALIZATION TOOLKIT",
+      "description": "Color Ramp implements VTK-style lookup tables for color mapping in the pipeline",
+      "weight": "8.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "13",
+      "source": "KAZURE ZHENG",
+      "target": "COLOR RAMP",
+      "description": "Kazure Zheng authored documentation explaining the Color Ramp node and its usage",
+      "weight": "1.0",
+      "links": "1",
+      "in_context": true
+    },
+    {
+      "id": "14",
+      "source": "COLOR RAMP",
+      "target": "COLOR MAPPER",
+      "description": "The Color Ramp node provides the color scheme that the Color Mapper node applies to data",
+      "weight": "1.0",
+      "links": "5",
+      "in_context": true
+    },
+    {
+      "id": "0",
+      "source": "KAZURE ZHENG",
+      "target": "VTKCONESOURCE",
+      "description": "Kazure Zheng authored documentation that includes VTKConeSource as a key component in the described data pipeline",
+      "weight": "6.0",
+      "links": "1",
+      "in_context": true
+    },
+    {
+      "id": "2",
+      "source": "VTKCONESOURCE",
+      "target": "VISUALIZATION TOOLKIT",
+      "description": "vtkConeSource is a component of the Visualization Toolkit (VTK) framework",
+      "weight": "9.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "17",
+      "source": "KAZURE ZHENG",
+      "target": "BVTK_NODE_VTKTOBLENDERMESHTYPE",
+      "description": "Kazure Zheng authored or documented the BVTK_Node_VTKToBlenderMeshType node, as indicated by their name appearing prominently in the document header",
+      "weight": "8.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "1",
+      "source": "VTKCONESOURCE",
+      "target": "VTKELEVATIONFILTER",
+      "description": "In the Visualization Toolkit (VTK) pipeline, VTKConeSource and vtkElevationFilter are two components that work in sequence to generate and enhance geometric data for visualization purposes. VTKConeSource is a source object that generates a polygonal representation of a cone, producing geometric output that serves as input for subsequent filters in the pipeline. This output typically includes vertices, edges, and faces that define the 3D shape of the cone.\n\nThe vtkElevationFilter then takes this geometric data—such as the cone geometry produced by VTKConeSource—and processes it to add scalar values based on the elevation of each point along a specified axis. These scalar values are commonly used to color the surface of the geometry in visualizations, enabling viewers to perceive variations in height or orientation. While vtkElevationFilter can accept input from various geometric sources, it is frequently used with simple procedural sources like VTKConeSource to demonstrate or apply elevation-based coloring in VTK-based rendering applications.\n\nTogether, VTKConeSource and vtkElevationFilter form a typical VTK pipeline segment where geometry is first created and then augmented with meaningful scalar data to support enhanced visual analysis. This workflow exemplifies VTK’s modular design, wherein discrete components are chained together to transform raw geometric primitives into richly annotated visual representations.",
+      "weight": "16.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "6",
+      "source": "COLOR MAPPER",
+      "target": "VTK TO BLENDER MESH",
+      "description": "Color Mapper outputs colored geometry that is converted into a Blender mesh by the VTK To Blender Mesh node",
+      "weight": "1.0",
+      "links": "5",
+      "in_context": true
+    },
+    {
+      "id": "9",
+      "source": "VTK TO BLENDER MESH",
+      "target": "VISUALIZATION TOOLKIT",
+      "description": "VTK To Blender Mesh bridges VTK output with Blender, relying on the Visualization Toolkit as a source",
+      "weight": "1.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "16",
+      "source": "VTK ELEVATION FILTER",
+      "target": "COLOR MAPPER",
+      "description": "The vtkElevationFilter generates scalar data (e.g., 'P_Elevation') that the Color Mapper uses for coloring geometry",
+      "weight": "8.0",
+      "links": "5",
+      "in_context": true
+    },
+    {
+      "id": "10",
+      "source": "VTKSPHERESOURCE",
+      "target": "KAZURE ZHENG",
+      "description": "Kazure Zheng authored or prepared documentation for the VTKSphereSource geometry generation process",
+      "weight": "1.0",
+      "links": "1",
+      "in_context": true
+    },
+    {
+      "id": "11",
+      "source": "KAZURE ZHENG",
+      "target": "VTKELEVATIONFILTER DOCUMENTATION EVENT",
+      "description": "Kazure Zheng authored the documentation titled '高程过滤器 VTKELEVATIONFILTER', indicating direct involvement in the event of creating this technical guide",
+      "weight": "9.0",
+      "links": "1",
+      "in_context": true
+    },
+    {
+      "id": "15",
+      "source": "COLOR RAMP",
+      "target": "VTK ELEVATION FILTER",
+      "description": "The VTK Elevation Filter produces scalar values that are mapped to colors by the Color Ramp node",
+      "weight": "1.0",
+      "links": "1",
+      "in_context": true
+    },
+    {
+      "id": "12",
+      "source": "VTKELEVATIONFILTERTYPE",
+      "target": "VTKELEVATIONFILTER",
+      "description": "VTKElevationFilterType is the node type that implements the functionality of vtkElevationFilter in the described system",
+      "weight": "1.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "18",
+      "source": "BLENDER",
+      "target": "BVTK_NODE_VTKTOBLENDERMESHTYPE",
+      "description": "The BVTK_Node_VTKToBlenderMeshType node outputs data specifically for use within Blender as mesh objects, indicating an integral integration relationship",
+      "weight": "1.0",
+      "links": "3",
+      "in_context": true
+    },
+    {
+      "id": "19",
+      "source": "VTK",
+      "target": "BVTK_NODE_VTKTOBLENDERMESHTYPE",
+      "description": "The BVTK_Node_VTKToBlenderMeshType node is designed to convert data from VTK format into Blender mesh, establishing a direct functional relationship",
+      "weight": "9.0",
+      "links": "3",
+      "in_context": true
+    }
+  ],
+  "claims": [],
+  "sources": [
+    {
+      "id": "9",
+      "text": "            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n             使用高程作为渲染参考的圆锥几何体 JSON 代码示例\n\n                              Kazure Zheng\n            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n\n\n\n┌────\n│ {\n│   \"links\": [\n│     {\n│       \"from_node_name\": \"vtkConeSource\",\n│       \"from_socket_identifier\": \"output\",\n│       \"to_node_name\": \"vtkElevationFilter\",\n│       \"to_socket_identifier\": \"input\"\n│     },\n│     {\n│       \"from_node_name\": \"vtkElevationFilter\",\n│       \"from_socket_identifier\": \"output\",\n│       \"to_node_name\": \"Color Mapper\",\n│       \"to_socket_identifier\": \"input\"\n│     },\n│     {\n│       \"from_node_name\": \"Color Ramp\",\n│       \"from_socket_identifier\": \"lookupTable\",\n│       \"to_node_name\": \"Color Mapper\",\n│       \"to_socket_identifier\": \"lookuptable\"\n│     },\n│     {\n│       \"from_node_name\": \"Color Mapper\",\n│       \"from_socket_identifier\": \"output\",\n│       \"to_node_name\": \"VTK To Blender Mesh\",\n│       \"to_socket_identifier\": \"input\"\n│     }\n│   ],\n│   \"nodes\": [\n│     {\n│       \"bl_idname\": \"VTKConeSourceType\",\n│       \"color\": [\n│         0.30000001192092896,\n│         0.30000001192092896,\n│         0.30000001192092896\n│       ],\n│       \"custom_code\": \"\",\n│       \"height\": 100.0,\n│       \"hide\": false,\n│       \"label\": \"\",\n│       \"location\": [\n│         -500.0,\n│         300.0\n│       ],\n│       \"m_Angle\": 26.565052032470703,\n│       \"m_Capping\": true,\n│       \"m_Center\": [\n│         0.0,\n│         0.0,\n│         0.0\n│       ],\n│       \"m_Direction\": [\n│         1.0,\n│         0.0,\n│         0.0\n│       ],\n│       \"m_Height\": 1.0,\n│       \"m_ObjectName\": \"\",\n│       \"m_Radius\": 0.5,\n│       \"m_Resolution\": 6,\n│       \"mute\": false,\n│       \"name\": \"vtkConeSource\",\n│       \"show_options\": true,\n│       \"show_preview\": false,\n"
+    },
+    {
+      "id": "13",
+      "text": "                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n                     球形几何体生成 VTKSHPERESOURCE\n\n                              Kazure Zheng\n                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. 数据源节点\n.. 1. 节点参数\n.. 2. 单个 vtkShpereSource 节点示例\n2. 使用 VTKShpereSource 节点生成一个基本球形几何体的完整示例\n\n\n1 数据源节点\n════════════\n\n  VTKShpereSourceType\n\n\n1.1 节点参数\n────────────\n\n  • bl_idname: VTKSphereSourceType\n  • color: 这个参数对颜色没有作用，设置为任意三元组即可，如 `[0.3, 0.3,\n    0.3]'\n  • custom_code: 默认为空，如 `\"\"'\n  • height: 任意数字\n  • hide: 默认为 `false'\n  • label: 默认为空，如 `\"\"'\n  • location: 任意二元组，如 `[100, 100]'\n  • width: 任意数字\n  • show_preview: 默认为 `false'\n  • show_options: 默认为 `true'\n  • mute: 默认为 `false'\n  • name: vtkSphereSource\n  • m_ObjectName: 默认为空， `\"\"'\n  • m_Center: 中心点坐标,定义球体的中心位置，通常是一个三维向量 (x,y,z)。\n    通常为 `[0,0,0]'\n  • m_Radius: 半径,球体的大小。默认为 `1'\n  • m_StartPhi: Phi起始角,定义球体在水平方向（经度/longitude）的起始角度。\n    默认为 `0'\n  • m_EndPhi: Phi终止角,定义球体在水平方向的终止角度。如果 m_StartPhi 是\n    0.0 且 m_EndPhi 是 360.0，则生成一个完整的环绕。默认为 `360'\n  • m_StartTheta: Theta起始角,定义球体在垂直方向（纬度/latitude）的起始\n    角度。Theta角通常是从极点（如北极）到赤道的角度，范围通常是 0.0 到\n    180.0 度。默认为 `0'\n  • m_EndTheta:"
+    },
+    {
+      "id": "17",
+      "text": "                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n                     高程过滤器 VTKELEVATIONFILTER\n\n                              Kazure Zheng\n                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. 高程过滤器节点 VTKElevationFilterType\n.. 1. 节点详解\n..... 1. 为什么需要这个节点？\n..... 2. 使用这个节点的注意事项\n.. 2. 节点参数\n.. 3. 单个 vtkElevationFilter 节点示例\n\n\n1 高程过滤器节点 VTKElevationFilterType\n═══════════════════════════════════════\n\n1.1 节点详解\n────────────\n\n  此节点的主要作用是为输入的几何数据（如网格）的 *每个顶点* （Point）添\n  加一个新的标量（Scalar）数据数组。这个标量值是根据每个顶点在一条 *指定\n  轴线* 上的位置计算出来的。这条轴线由 `m_LowPoint' 和 `m_HighPoint' 两\n  个参数定义。\n\n\n1.1.1 为什么需要这个节点？\n╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌\n\n  数据源（如 `vtkConeSource' 或 ~vtkSphereSource~）通常只生成几何信息\n  （顶点的X, Y, Z坐标），但 *不包含* 与之关联的标量数据（如温度、压力、\n  高度等）。\n\n  而后续的 `Color Mapper' （颜色映射器）节点 *必须* 依赖这些标量数据才能\n  进行着色。 `vtkElevationFilter' 的作用就是 *生成* 这些必需的标量数据，\n  充当了纯几何体和数据可视化（着色）之间的桥梁。\n\n  通常用于对一个集合模型根据物理形状、空间位置或者其他物理属性（冲量等等）\n  进行可视"
+    },
+    {
+      "id": "20",
+      "text": "                         ━━━━━━━━━━━━━━━━━━━━━\n                          颜色渐变 COLOR RAMP\n\n                              Kazure Zheng\n                         ━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. 颜色渐变节点 BVTK_Node_ColorRampType\n.. 1. 节点详解\n..... 1. 为什么需要这个节点？\n..... 2. 什么情况下要使用这个节点？\n..... 3. 使用这个节点的注意事项\n.. 2. 节点参数\n.. 3. 单个 Color Ramp 节点示例\n\n\n1 颜色渐变节点 BVTK_Node_ColorRampType\n══════════════════════════════════════\n\n1.1 节点详解\n────────────\n\n  此节点的作用是定义一个颜色查找表（Lookup Table, LUT）。它本身不处理任\n  何几何数据。\n\n  它的唯一功能是建立一个“数值 -> 颜色”的映射规则。例如，定义 0.0 对应蓝\n  色，0.5 对应绿色，1.0 对应红色，并自动在这些颜色之间生成平滑的渐变。\n\n\n1.1.1 为什么需要这个节点？\n╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌\n\n  `Color Mapper' （颜色映射器）节点知道如何应用颜色，但它不知道具体要应\n  用什么颜色。 `Color Ramp' 节点就是用来告诉 `Color Mapper' 颜色方案的。\n\n  它将抽象的标量数据（如 `vtkElevationFilter' 生成的 0.0 到 1.0 的值）转\n  换成具体的视觉信息（颜色）。\n\n\n1.1.2 什么情况下要使用这个节点？\n╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌"
+    },
+    {
+      "id": "27",
+      "text": "           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n            VTK 数据转换 BLENDER 网格数据节点 VTK TO BLENDER\n                                  MESH\n\n                              Kazure Zheng\n           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. vtk 数据brhr blender 网格数据节点 BVTK_Node_VTKToBlenderMeshType\n.. 1. 节点参数\n.. 2. 单个 VTK To Blender Mesh 节点的示例\n2. 使用 VTK To Blender Mesh 渲染数据的一个完整示例\n\n\n1 vtk 数据brhr blender 网格数据节点 BVTK_Node_VTKToBlenderMeshType\n══════════════════════════════════════════════════════════════════\n\n  所有数据如果最后想要能够在 blender 里面使用都必须要转换为 bledner mesh\n  数据，都必须要输出到这个节店里面。\n\n\n1.1 节点参数\n────────────\n\n  • bl_idname: BVTK_Node_VTKToBlenderMeshType\n  • color: 这个参数对颜色没有作用，设置为任意三元组即可，如 `[0.3, 0.3,\n    0.3]'\n  • custom_code: 默认为空，如 `\"\"'\n  • height: 任意数字\n  • hide: 默认为 `false'\n  • label: 默认为空，如 `\"\"'\n  • location: 任意二元组，如 `[100, 100]'\n  • width: 任意数字\n  • show_preview: 默认为 `false'\n  • show_options: 默认为 `true'\n  • mute: 默认为 `false'\n  • name: VTK To Blender Mesh\n  • create_all_verts: 创建所有顶点,一个布尔值。如果设置为 false，可能意\n    味着只创建有效的、参与形成面或边的顶点。在某些情况下，可以节省内存或\n    优化性能。默认为 `true'\n  • create_edges: 创建边,一个布尔值。指示是否应在网格中明确地生成和存储\n    边（Edges） 数据。边是连接顶点的线段。设置为 true 通常是为了支持线框\n    �"
+    },
+    {
+      "id": "0",
+      "text": "                         ━━━━━━━━━━━━━━━━━━━━━\n                          JSON 文件的格式概述\n\n                              Kazure Zheng\n                         ━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. 基本结构\n.. 1. nodes\n..... 1. 单个节点(node)的格式\n.. 2. links\n2. 一个完整的 JSON 文件的示例\n\n\n1 基本结构\n══════════\n\n  1. 文件内容被一个大括号包裹\n  2. 必定包含 \"links\", \"nodes\" 两个部分\n     • \"links\": 表示工作流文件中相互连接的部分\n     • \"nodes\": 表示工作流文件中具体处理数据的部分\n  ┌────\n  │ {\n  │     \"links\": [\n  │ \n  │     ],\n  │     \"nodes\": [\n  │ \n  │     ]\n  │ }\n  └────\n\n\n1.1 nodes\n─────────\n\n  这是表示工作流文件中具体处理数据的部分。里面包含了多个节点（node）。\n  • 使用 [] 包裹所有节点(node)。\n  • 单个节点(node)使用 {} 包裹。\n  • 各个节点都有各自的属性，根据不同节点(node)进行调整\n\n  ┌────\n  │ {\n  │   \"links\": [\n  │ \n  │   ],\n  │   \"nodes\": [\n  │     {\n  │       \"bl_idname\": \"BVTK_Node_InfoType\",\n  │       \"color\": [\n  │         0.30000001192092896,\n  │         0.5,\n  │         0.10000000149011612\n  │       ],\n  │       \"custom_code\": \"\",\n  │       \"height\": 100.0,\n  │       \"hide\": false,\n  │       \"label\": \"\",\n  │       \"location\": [\n  │         34.03572463989258,\n  │         16.92273712158203\n  │       ],\n  │       \"mute\": false,\n  │       \"name\": \"Info\",\n  │       \"show_options\": true,\n  │       \"show_preview\": false,\n  │       \"width\": 572.0986328125\n  │     },\n  │     {\n  │       \"bl_idname\": \"VTKPolyDataReaderType\",\n  │       \"color\": [\n  │         0.30000001192092896,\n  │         0.30000001192092896,\n  │         0."
+    },
+    {
+      "id": "24",
+      "text": "                        ━━━━━━━━━━━━━━━━━━━━━━━\n                         颜色映射 COLOR MAPPER\n\n                              Kazure Zheng\n                        ━━━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. 颜色映射节点 BVTK_Node_ColorMapperType\n.. 1. 节点详解\n..... 1. 为什么需要这个节点？\n..... 2. 使用这个节点的注意事项\n.. 2. 节点参数\n.. 3. 单个 Color Mapper 节点示例\n\n\n1 颜色映射节点 BVTK_Node_ColorMapperType\n════════════════════════════════════════\n\n1.1 节点详解\n────────────\n\n  这是执行实际着色工作的节点。\n\n  它接收两个输入：\n  1. 几何数据 (带有标量信息，来自 `vtkElevationFilter' 或文件读取器)。\n  2. 颜色查找表 (来自 `Color Ramp')。\n\n  它的作用是：遍历几何数据上的每一个点，读取该点的标量值，然后去颜色查找\n  表中查询该标量值对应的颜色，最后将这个颜色应用到该点上。\n\n\n1.1.1 为什么需要这个节点？\n╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌\n\n  可以将抽象的数据可视化，根据数值的大小转换到，具体的颜色。\n\n\n1.1.2 使用这个节点的注意事项\n╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌\n\n  1. `color_by' (着色依据)：这是最关键的参数。您必须在此处选择正确的标\n     量数组。如果使用 `vtkElevationFilter' ，您应选择 `P_Elevation' 。\n     如果数据来自文件，您需要选择您关心的标量（如 \"Temperature\"）。如果\n     选错，将无法"
+    },
+    {
+      "id": "31",
+      "text": "                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n                      圆锥几何体生成 VTKCONESOURCE\n\n                              Kazure Zheng\n                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n\nTable of Contents\n─────────────────\n\n1. 数据源节点 VTKConeSourceType\n.. 1. 节点参数\n.. 2. 单个 vtkConeSource 节点示例\n2. 使用 vtkConeSource 节点生成一个基本圆锥几何体的完整示例\n\n\n1 数据源节点 VTKConeSourceType\n══════════════════════════════\n\n1.1 节点参数\n────────────\n\n  • bl_idname: VTKConeSourceType\n  • color: 这个参数对颜色没有作用，设置为任意三元组即可，如 `[0.3, 0.3,\n    0.3]'\n  • custom_code: 默认为空，如 `\"\"'\n  • height: 任意数字\n  • hide: 默认为 `false'\n  • label: 默认为空，如 `\"\"'\n  • location: 任意二元组，如 `[100, 100]'\n  • width: 任意数字\n  • show_preview: 默认为 `false'\n  • show_options: 默认为 `true'\n  • mute: 默认为 `false'\n  • name: vtkConeSource\n  • m_ObjectName: 默认为空， `\"\"'\n  • m_Center: 中心点坐标 Coordinates,\"定义圆锥体底面或轴心的中心位置，通\n    常是一个三维向量 (x,y,z)。默认值是 `[0.0, 0.0, 0.0]'\n  • m_Direction: 方向向量 Vector,\"定义圆锥体的轴线方向（即从底面中心指向\n    尖端的方向）。默认值是 `[1~0, 0.0, 0.0]'\n  • m_Height: 高度,圆锥体底面中心到尖端的距离（沿 m_Direction 向量测量）。\n    默认值是 `1.0'\n  • m_Radius: 半径,定义圆锥体底面的半径。对于标准圆锥体，这是底部圆形的\n    半径。默认值是 `0.5'\n  • m_Angle: 锥角/半顶角"
+    },
+    {
+      "id": "32",
+      "text": "。对于标准圆锥体，这是底部圆形的\n    半径。默认值是 `0.5'\n  • m_Angle: 锥角/半顶角 Angle / Half Apex Angle,定义圆锥体的半顶角，即\n    圆锥体侧面与中心轴之间的夹角。这个角度决定了圆锥体的“尖锐”程度。默认\n    值是 `26.565'\n  • m_Resolution: 分辨率,定义圆锥体侧面在环绕方向（圆周方向）上细分网格\n    的段数。数值越大，生成的圆锥体侧面越平滑。默认值是 `6'\n  • m_Capping: 封口/封顶,一个布尔值。指示是否应在圆锥体的底部（和/或顶部，\n    如果是圆锥台）生成一个平坦的“盖子”或“底面”来封闭几何体。默认值是\n    `true'\n\n\n1.2 单个 vtkConeSource 节点示例\n───────────────────────────────\n\n  ┌────\n  │ {\n  │   \"bl_idname\": \"VTKConeSourceType\",\n  │   \"color\": [\n  │     0.30000001192092896,\n  │     0.30000001192092896,\n  │     0.30000001192092896\n  │   ],\n  │   \"custom_code\": \"\",\n  │   \"height\": 100.0,\n  │   \"hide\": false,\n  │   \"label\": \"\",\n  │   \"location\": [\n  │     -500.0,\n  │     300.0\n  │   ],\n  │   \"m_Angle\": 26.565052032470703,\n  │   \"m_Capping\": true,\n  │   \"m_Center\": [\n  │     0.0,\n  │     0.0,\n  │     0.0\n  │   ],\n  │   \"m_Direction\": [\n  │     1.0,\n  │     0.0,\n  │     0.0\n  │   ],\n  │   \"m_Height\": 1.0,\n  │   \"m_ObjectName\": \"\",\n  │   \"m_Radius\": 0.5,\n  │   \"m_Resolution\": 6,\n  │   \"mute\": false,\n  │  "
+    }
+  ]
+}

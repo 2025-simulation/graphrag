@@ -1,0 +1,76 @@
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="double" />
+  <graph edgedefault="undirected">
+    <node id="KAZURE ZHENG" />
+    <node id="VTKCONESOURCE" />
+    <node id="VTKELEVATIONFILTER" />
+    <node id="VISUALIZATION TOOLKIT" />
+    <node id="COLOR MAPPER" />
+    <node id="COLOR RAMP" />
+    <node id="VTK TO BLENDER MESH" />
+    <node id="VTKSPHERESOURCE" />
+    <node id="VTKELEVATIONFILTER DOCUMENTATION EVENT" />
+    <node id="VTKELEVATIONFILTERTYPE" />
+    <node id="VTK ELEVATION FILTER" />
+    <node id="BVTK_NODE_VTKTOBLENDERMESHTYPE" />
+    <node id="BLENDER" />
+    <node id="VTK" />
+    <edge source="KAZURE ZHENG" target="VTKCONESOURCE">
+      <data key="d0">6.0</data>
+    </edge>
+    <edge source="KAZURE ZHENG" target="VTKSPHERESOURCE">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="KAZURE ZHENG" target="VTKELEVATIONFILTER DOCUMENTATION EVENT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="KAZURE ZHENG" target="COLOR RAMP">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="KAZURE ZHENG" target="BVTK_NODE_VTKTOBLENDERMESHTYPE">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="VTKCONESOURCE" target="VTKELEVATIONFILTER">
+      <data key="d0">16.0</data>
+    </edge>
+    <edge source="VTKCONESOURCE" target="VISUALIZATION TOOLKIT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="VTKELEVATIONFILTER" target="COLOR MAPPER">
+      <data key="d0">17.0</data>
+    </edge>
+    <edge source="VTKELEVATIONFILTER" target="VISUALIZATION TOOLKIT">
+      <data key="d0">9.0</data>
+    </edge>
+    <edge source="VTKELEVATIONFILTER" target="VTKELEVATIONFILTERTYPE">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="VISUALIZATION TOOLKIT" target="COLOR MAPPER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="VISUALIZATION TOOLKIT" target="COLOR RAMP">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="VISUALIZATION TOOLKIT" target="VTK TO BLENDER MESH">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="COLOR MAPPER" target="COLOR RAMP">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="COLOR MAPPER" target="VTK TO BLENDER MESH">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="COLOR MAPPER" target="VTK ELEVATION FILTER">
+      <data key="d0">8.0</data>
+    </edge>
+    <edge source="COLOR RAMP" target="VTK ELEVATION FILTER">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BVTK_NODE_VTKTOBLENDERMESHTYPE" target="BLENDER">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="BVTK_NODE_VTKTOBLENDERMESHTYPE" target="VTK">
+      <data key="d0">9.0</data>
+    </edge>
+  </graph>
+</graphml>

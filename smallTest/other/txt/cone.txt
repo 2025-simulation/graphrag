@@ -1,0 +1,183 @@
+                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                      圆锥几何体生成 VTKCONESOURCE
+
+                              Kazure Zheng
+                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. 数据源节点 VTKConeSourceType
+.. 1. 节点参数
+.. 2. 单个 vtkConeSource 节点示例
+2. 使用 vtkConeSource 节点生成一个基本圆锥几何体的完整示例
+
+
+1 数据源节点 VTKConeSourceType
+══════════════════════════════
+
+1.1 节点参数
+────────────
+
+  • bl_idname: VTKConeSourceType
+  • color: 这个参数对颜色没有作用，设置为任意三元组即可，如 `[0.3, 0.3,
+    0.3]'
+  • custom_code: 默认为空，如 `""'
+  • height: 任意数字
+  • hide: 默认为 `false'
+  • label: 默认为空，如 `""'
+  • location: 任意二元组，如 `[100, 100]'
+  • width: 任意数字
+  • show_preview: 默认为 `false'
+  • show_options: 默认为 `true'
+  • mute: 默认为 `false'
+  • name: vtkConeSource
+  • m_ObjectName: 默认为空， `""'
+  • m_Center: 中心点坐标 Coordinates,"定义圆锥体底面或轴心的中心位置，通
+    常是一个三维向量 (x,y,z)。默认值是 `[0.0, 0.0, 0.0]'
+  • m_Direction: 方向向量 Vector,"定义圆锥体的轴线方向（即从底面中心指向
+    尖端的方向）。默认值是 `[1~0, 0.0, 0.0]'
+  • m_Height: 高度,圆锥体底面中心到尖端的距离（沿 m_Direction 向量测量）。
+    默认值是 `1.0'
+  • m_Radius: 半径,定义圆锥体底面的半径。对于标准圆锥体，这是底部圆形的
+    半径。默认值是 `0.5'
+  • m_Angle: 锥角/半顶角 Angle / Half Apex Angle,定义圆锥体的半顶角，即
+    圆锥体侧面与中心轴之间的夹角。这个角度决定了圆锥体的“尖锐”程度。默认
+    值是 `26.565'
+  • m_Resolution: 分辨率,定义圆锥体侧面在环绕方向（圆周方向）上细分网格
+    的段数。数值越大，生成的圆锥体侧面越平滑。默认值是 `6'
+  • m_Capping: 封口/封顶,一个布尔值。指示是否应在圆锥体的底部（和/或顶部，
+    如果是圆锥台）生成一个平坦的“盖子”或“底面”来封闭几何体。默认值是
+    `true'
+
+
+1.2 单个 vtkConeSource 节点示例
+───────────────────────────────
+
+  ┌────
+  │ {
+  │   "bl_idname": "VTKConeSourceType",
+  │   "color": [
+  │     0.30000001192092896,
+  │     0.30000001192092896,
+  │     0.30000001192092896
+  │   ],
+  │   "custom_code": "",
+  │   "height": 100.0,
+  │   "hide": false,
+  │   "label": "",
+  │   "location": [
+  │     -500.0,
+  │     300.0
+  │   ],
+  │   "m_Angle": 26.565052032470703,
+  │   "m_Capping": true,
+  │   "m_Center": [
+  │     0.0,
+  │     0.0,
+  │     0.0
+  │   ],
+  │   "m_Direction": [
+  │     1.0,
+  │     0.0,
+  │     0.0
+  │   ],
+  │   "m_Height": 1.0,
+  │   "m_ObjectName": "",
+  │   "m_Radius": 0.5,
+  │   "m_Resolution": 6,
+  │   "mute": false,
+  │   "name": "vtkConeSource",
+  │   "show_options": true,
+  │   "show_preview": false,
+  │   "width": 200.0
+  │ },
+  └────
+
+
+2 使用 vtkConeSource 节点生成一个基本圆锥几何体的完整示例
+═════════════════════════════════════════════════════════
+
+  ┌────
+  │ {
+  │     "links": [
+  │         {
+  │             "from_node_name": "vtkConeSource",
+  │             "from_socket_identifier": "output",
+  │             "to_node_name": "VTK To Blender Mesh",
+  │             "to_socket_identifier": "input"
+  │         }
+  │     ],
+  │     "nodes": [
+  │         {
+  │             "bl_idname": "VTKConeSourceType",
+  │             "color": [
+  │                 0.30000001192092896,
+  │                 0.30000001192092896,
+  │                 0.30000001192092896
+  │             ],
+  │             "custom_code": "",
+  │             "height": 100.0,
+  │             "hide": false,
+  │             "label": "",
+  │             "location": [
+  │                 -500.0,
+  │                 300.0
+  │             ],
+  │             "m_Angle": 26.565052032470703,
+  │             "m_Capping": true,
+  │             "m_Center": [
+  │                 0.0,
+  │                 0.0,
+  │                 0.0
+  │             ],
+  │             "m_Direction": [
+  │                 1.0,
+  │                 0.0,
+  │                 0.0
+  │             ],
+  │             "m_Height": 1.0,
+  │             "m_ObjectName": "",
+  │             "m_Radius": 0.5,
+  │             "m_Resolution": 6,
+  │             "mute": false,
+  │             "name": "vtkConeSource",
+  │             "show_options": true,
+  │             "show_preview": false,
+  │             "width": 200.0
+  │         },
+  │         {
+  │             "bl_idname": "BVTK_Node_VTKToBlenderMeshType",
+  │             "color": [
+  │                 0.30000001192092896,
+  │                 0.30000001192092896,
+  │                 0.30000001192092896
+  │             ],
+  │             "create_all_verts": false,
+  │             "create_edges": true,
+  │             "create_faces": true,
+  │             "custom_code": "",
+  │             "generate_material": true,
+  │             "height": 100.0,
+  │             "hide": false,
+  │             "label": "",
+  │             "location": [
+  │                 250.0,
+  │                 300.0
+  │             ],
+  │             "m_Name": "mesh",
+  │             "motion_blur": false,
+  │             "motion_blur_by": "",
+  │             "motion_blur_time_step": 1.0,
+  │             "mute": false,
+  │             "name": "VTK To Blender Mesh",
+  │             "recalc_norms": false,
+  │             "show_options": true,
+  │             "show_preview": false,
+  │             "smooth": false,
+  │             "width": 200.0
+  │         }
+  │     ]
+  │ }
+  └────

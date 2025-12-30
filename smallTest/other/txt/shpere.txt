@@ -1,0 +1,192 @@
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                     球形几何体生成 VTKSHPERESOURCE
+
+                              Kazure Zheng
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. 数据源节点
+.. 1. 节点参数
+.. 2. 单个 vtkShpereSource 节点示例
+2. 使用 VTKShpereSource 节点生成一个基本球形几何体的完整示例
+
+
+1 数据源节点
+════════════
+
+  VTKShpereSourceType
+
+
+1.1 节点参数
+────────────
+
+  • bl_idname: VTKSphereSourceType
+  • color: 这个参数对颜色没有作用，设置为任意三元组即可，如 `[0.3, 0.3,
+    0.3]'
+  • custom_code: 默认为空，如 `""'
+  • height: 任意数字
+  • hide: 默认为 `false'
+  • label: 默认为空，如 `""'
+  • location: 任意二元组，如 `[100, 100]'
+  • width: 任意数字
+  • show_preview: 默认为 `false'
+  • show_options: 默认为 `true'
+  • mute: 默认为 `false'
+  • name: vtkSphereSource
+  • m_ObjectName: 默认为空， `""'
+  • m_Center: 中心点坐标,定义球体的中心位置，通常是一个三维向量 (x,y,z)。
+    通常为 `[0,0,0]'
+  • m_Radius: 半径,球体的大小。默认为 `1'
+  • m_StartPhi: Phi起始角,定义球体在水平方向（经度/longitude）的起始角度。
+    默认为 `0'
+  • m_EndPhi: Phi终止角,定义球体在水平方向的终止角度。如果 m_StartPhi 是
+    0.0 且 m_EndPhi 是 360.0，则生成一个完整的环绕。默认为 `360'
+  • m_StartTheta: Theta起始角,定义球体在垂直方向（纬度/latitude）的起始
+    角度。Theta角通常是从极点（如北极）到赤道的角度，范围通常是 0.0 到
+    180.0 度。默认为 `0'
+  • m_EndTheta: Theta终止角,定义球体在垂直方向的终止角度。如果
+    m_StartTheta 是 0.0 且 m_EndTheta 是 180.0，则生成一个完整的极点到极
+    点的覆盖。默认为 `180'
+  • m_PhiResolution: Phi轴分辨率,定义在 Phi (ϕ) 轴（水平方向）上细分网格
+    的段数（或步骤数）。数值越大，生成的球体网格越平滑，但计算量也越大。
+    默认为 `20'
+  • m_ThetaResolution: Theta轴分辨率,定义在 Theta (θ) 轴（垂直方向）上细
+    分网格的段数。数值越大，生成的球体网格越平滑。默认为 `20'
+  • m_GenerateNormals: 生成法线,一个布尔值（true/false），指示是否应该为
+    生成的网格计算并存储法线向量。法线对于正确的光照和着色是必不可少的。
+    默认为 `true'
+  • m_LatLongTessellation: 经纬度曲面细分,一个布尔值，表示是否使用经纬度
+    细分（UV球体）的方法来生成网格。默认为 `true'
+
+
+1.2 单个 vtkShpereSource 节点示例
+─────────────────────────────────
+
+  ┌────
+  │ {
+  │     "bl_idname": "VTKSphereSourceType",
+  │     "color": [
+  │         0.30000001192092896,
+  │         0.30000001192092896,
+  │         0.30000001192092896
+  │     ],
+  │     "custom_code": "",
+  │     "height": 100.0,
+  │     "hide": false,
+  │     "label": "",
+  │     "location": [
+  │         -400.0,
+  │         300.0
+  │     ],
+  │     "m_Center": [
+  │         0.0,
+  │         0.0,
+  │         0.0
+  │     ],
+  │     "m_EndPhi": 180.0,
+  │     "m_EndTheta": 360.0,
+  │     "m_GenerateNormals": true,
+  │     "m_LatLongTessellation": true,
+  │     "m_ObjectName": "",
+  │     "m_PhiResolution": 20,
+  │     "m_Radius": 1.0,
+  │     "m_StartPhi": 0.0,
+  │     "m_StartTheta": 0.0,
+  │     "m_ThetaResolution": 20,
+  │     "mute": false,
+  │     "name": "vtkSphereSource",
+  │     "show_options": true,
+  │     "show_preview": false,
+  │     "width": 200.0
+  │ }
+  └────
+
+
+2 使用 VTKShpereSource 节点生成一个基本球形几何体的完整示例
+═══════════════════════════════════════════════════════════
+
+  ┌────
+  │ {
+  │     "links": [
+  │         {
+  │             "from_node_name": "vtkSphereSource",
+  │             "from_socket_identifier": "output",
+  │             "to_node_name": "VTK To Blender Mesh",
+  │             "to_socket_identifier": "input"
+  │         }
+  │     ],
+  │     "nodes": [
+  │         {
+  │             "bl_idname": "VTKSphereSourceType",
+  │             "color": [
+  │                 0.30000001192092896,
+  │                 0.30000001192092896,
+  │                 0.30000001192092896
+  │             ],
+  │             "custom_code": "",
+  │             "height": 100.0,
+  │             "hide": false,
+  │             "label": "",
+  │             "location": [
+  │                 -400.0,
+  │                 300.0
+  │             ],
+  │             "m_Center": [
+  │                 0.0,
+  │                 0.0,
+  │                 0.0
+  │             ],
+  │             "m_EndPhi": 180.0,
+  │             "m_EndTheta": 360.0,
+  │             "m_GenerateNormals": true,
+  │             "m_LatLongTessellation": true,
+  │             "m_ObjectName": "",
+  │             "m_PhiResolution": 20,
+  │             "m_Radius": 1.0,
+  │             "m_StartPhi": 0.0,
+  │             "m_StartTheta": 0.0,
+  │             "m_ThetaResolution": 20,
+  │             "mute": false,
+  │             "name": "vtkSphereSource",
+  │             "show_options": true,
+  │             "show_preview": false,
+  │             "width": 200.0
+  │         },
+  │         {
+  │             "bl_idname": "BVTK_Node_VTKToBlenderMeshType",
+  │             "color": [
+  │                 0.30000001192092896,
+  │                 0.30000001192092896,
+  │                 0.30000001192092896
+  │             ],
+  │             "create_all_verts": false,
+  │             "create_edges": true,
+  │             "create_faces": true,
+  │             "custom_code": "",
+  │             "generate_material": false,
+  │             "height": 100.0,
+  │             "hide": false,
+  │             "label": "",
+  │             "location": [
+  │                 300.0,
+  │                 300.0
+  │             ],
+  │             "m_Name": "mesh",
+  │             "motion_blur": false,
+  │             "motion_blur_by": "",
+  │             "motion_blur_time_step": 1.0,
+  │             "mute": false,
+  │             "name": "VTK To Blender Mesh",
+  │             "recalc_norms": false,
+  │             "show_options": true,
+  │             "show_preview": false,
+  │             "smooth": false,
+  │             "width": 200.0
+  │         }
+  │     ]
+  │ }
+  │ 
+  └────

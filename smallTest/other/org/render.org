@@ -1,0 +1,148 @@
+#+TITLE: vtk 数据转换 blender 网格数据节点 VTK To Blender Mesh
+
+* vtk 数据brhr blender 网格数据节点 BVTK_Node_VTKToBlenderMeshType
+所有数据如果最后想要能够在 blender 里面使用都必须要转换为 bledner mesh 数据，都必须要输出到这个节店里面。
+** 节点参数
+- bl_idname: BVTK_Node_VTKToBlenderMeshType
+- color: 这个参数对颜色没有作用，设置为任意三元组即可，如 ~[0.3, 0.3, 0.3]~
+- custom_code: 默认为空，如 ~""~
+- height: 任意数字
+- hide: 默认为 ~false~
+- label: 默认为空，如 ~""~
+- location: 任意二元组，如 ~[100, 100]~
+- width: 任意数字
+- show_preview: 默认为 ~false~
+- show_options: 默认为 ~true~
+- mute: 默认为 ~false~
+- name: VTK To Blender Mesh
+- create_all_verts: 创建所有顶点,一个布尔值。如果设置为 false，可能意味着只创建有效的、参与形成面或边的顶点。在某些情况下，可以节省内存或优化性能。默认为 ~true~
+- create_edges: 创建边,一个布尔值。指示是否应在网格中明确地生成和存储边（Edges） 数据。边是连接顶点的线段。设置为 true 通常是为了支持线框渲染或某些几何操作。默认为 ~true~
+- create_faces: 创建面,一个布尔值。指示是否应在网格中生成和存储面（Faces）/多边形数据。默认为 ~true~
+- m_Name: 网格名称,为生成的网格对象命名的字符串。一般命名为几何体的名称比如 ~shpere~
+- generate_material: 生成材质,一个布尔值。指示是否应在创建网格时自动生成一个默认的材质。默认为 ~false~
+- recalc_norms: 重新计算法线,一个布尔值。指示是否应在网格生成或修改后重新计算顶点法线。默认为 ~false~
+- smooth: 平滑着色,一个布尔值。指示是否对网格应用平滑着色。如果为 true，物体看起来会更圆滑；如果为 false，则呈现出分明的多边形棱角（平面着色）。默认为 ~false~
+- motion_blur: 运动模糊,一个布尔值。指示是否对该网格应用运动模糊效果。在渲染动画时，使快速移动的物体看起来更真实。默认为 ~false~
+- motion_blur_by: 运动模糊依据,一个字符串。定义计算运动模糊时所依据的属性（例如，可能基于速度向量或特定动画属性）。默认为空 ~""~
+- motion_blur_time_step: 运动模糊时间步长,一个浮点数。定义用于计算运动模糊效果的时间增量或步长。默认为 ~1.0~
+
+  
+** 单个 VTK To Blender Mesh 节点的示例
+#+begin_src json
+  {
+    "bl_idname": "BVTK_Node_VTKToBlenderMeshType",
+    "color": [
+      0.30000001192092896,
+      0.30000001192092896,
+      0.30000001192092896
+    ],
+    "create_all_verts": false,
+    "create_edges": true,
+    "create_faces": true,
+    "custom_code": "",
+    "generate_material": false,
+    "height": 100.0,
+    "hide": false,
+    "label": "",
+    "location": [
+      300.0,
+      300.0
+    ],
+    "m_Name": "mesh",
+    "motion_blur": false,
+    "motion_blur_by": "",
+    "motion_blur_time_step": 1.0,
+    "mute": false,
+    "name": "VTK To Blender Mesh",
+    "recalc_norms": false,
+    "show_options": true,
+    "show_preview": false,
+    "smooth": false,
+    "width": 200.0
+  }
+#+end_src
+* 使用 VTK To Blender Mesh 渲染数据的一个完整示例
+渲染的关键是需要使用 "links" 把所有节点的数据串联起来。
+
+#+begin_src
+{
+    "links": [
+        {
+            "from_node_name": "vtkSphereSource",
+            "from_socket_identifier": "output",
+            "to_node_name": "VTK To Blender Mesh",
+            "to_socket_identifier": "input"
+        }
+    ],
+    "nodes": [
+        {
+            "bl_idname": "VTKSphereSourceType",
+            "color": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "custom_code": "",
+            "height": 100.0,
+            "hide": false,
+            "label": "",
+            "location": [
+                -400.0,
+                300.0
+            ],
+            "m_Center": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "m_EndPhi": 180.0,
+            "m_EndTheta": 360.0,
+            "m_GenerateNormals": true,
+            "m_LatLongTessellation": true,
+            "m_ObjectName": "",
+            "m_PhiResolution": 20,
+            "m_Radius": 1.0,
+            "m_StartPhi": 0.0,
+            "m_StartTheta": 0.0,
+            "m_ThetaResolution": 20,
+            "mute": false,
+            "name": "vtkSphereSource",
+            "show_options": true,
+            "show_preview": false,
+            "width": 200.0
+        },
+        {
+            "bl_idname": "BVTK_Node_VTKToBlenderMeshType",
+            "color": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "create_all_verts": false,
+            "create_edges": true,
+            "create_faces": true,
+            "custom_code": "",
+            "generate_material": false,
+            "height": 100.0,
+            "hide": false,
+            "label": "",
+            "location": [
+                300.0,
+                300.0
+            ],
+            "m_Name": "mesh",
+            "motion_blur": false,
+            "motion_blur_by": "",
+            "motion_blur_time_step": 1.0,
+            "mute": false,
+            "name": "VTK To Blender Mesh",
+            "recalc_norms": false,
+            "show_options": true,
+            "show_preview": false,
+            "smooth": false,
+            "width": 200.0
+        }
+    ]
+}
+
+#+end_src

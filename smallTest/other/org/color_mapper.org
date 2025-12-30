@@ -1,0 +1,71 @@
+#+TITLE: 颜色映射 Color Mapper
+
+* 颜色映射节点 BVTK_Node_ColorMapperType
+** 节点详解
+这是执行实际着色工作的节点。
+
+它接收两个输入：
+1.  几何数据 (带有标量信息，来自 ~vtkElevationFilter~ 或文件读取器)。
+2.  颜色查找表 (来自 ~Color Ramp~)。
+
+它的作用是：遍历几何数据上的每一个点，读取该点的标量值，然后去颜色查找表中查询该标量值对应的颜色，最后将这个颜色应用到该点上。
+
+*** 为什么需要这个节点？
+可以将抽象的数据可视化，根据数值的大小转换到，具体的颜色。
+
+*** 使用这个节点的注意事项
+1.  ~color_by~ (着色依据)：这是最关键的参数。您必须在此处选择正确的标量数组。如果使用 ~vtkElevationFilter~ ，您应选择  ~P_Elevation~ 。如果数据来自文件，您需要选择您关心的标量（如 "Temperature"）。如果选错，将无法正确显示颜色。
+2.  双重输入：此节点必须同时连接几何数据输入和 ~lookuptable~ 输入才能正常工作。
+3.  ~auto_range~ (自动范围)：
+     当为 ~true~ (默认) 时，节点会自动检测输入标量数据的最小值和最大值，并将 ~Color Ramp~ 的完整范围（0.0到1.0）拉伸以匹配该数据范围。
+     当为 ~false~ 时，您必须手动设置 ~min~ 和 ~max~ 值。这对于固定颜色范围（例如，始终将0设为蓝色，100设为红色，无论数据实际范围如何）非常有用。
+** 节点参数
+- bl_idname: BVTK_Node_ColorMapperType
+- color: 任意三元组，如 ~[0.3, 0.3, 0.3]~
+- custom_code: 默认为空，如 ~""~
+- height: 任意数字，如 ~5.5~
+- hide: 默认为 ~false~
+- label: 默认为空，如 ~""~
+- location: 任意二元组，如 ~[0.0, 300.0]~
+- width: 任意数字，如 ~200.0~
+- show_preview: 默认为 ~false~
+- show_options: 默认为 ~true~
+- mute: 默认为 ~false~
+- name: Color Mapper
+- auto_range: 自动范围, 布尔值。若为 ~true~，则自动将输入数据的标量范围（例如 ~vtkElevationFilter~ 生成的 ~[0.0, 1.0]~）映射到 ~Color Ramp~ 的完整范围。
+- color_by: 着色依据, 字符串，指定用于着色的标量数组的名称。例如 ~P_Elevation~ 对应 ~vtkElevationFilter~ 生成的 "Elevation" 数据。
+- lut: (Use Lookup Table) 是否使用查找表。当连接了 ~Color Ramp~ 节点时，此参数通常与 ~Color Ramp~ 协同工作。
+- max: 映射最大值, 当 ~auto_range~ 为 ~false~ 时，手动指定映射到颜色范围顶端的标量值。
+- min: 映射最小值, 当 ~auto_range~ 为 ~false~ 时，手动指定映射到颜色范围底端的标量值。
+- texture_name: 纹理名称, 默认为空，如 ~""~ 。
+
+** 单个 Color Mapper 节点示例
+#+begin_src json
+{
+    "auto_range": true,
+    "bl_idname": "BVTK_Node_ColorMapperType",
+    "color": [
+        0.30000001192092896,
+        0.30000001192092896,
+        0.30000001192092896
+    ],
+    "color_by": "P_Elevation",
+    "custom_code": "",
+    "height": 5.5,
+    "hide": false,
+    "label": "",
+    "location": [
+        0.0,
+        300.0
+    ],
+    "lut": false,
+    "max": 0.7165063619613647,
+    "min": 0.28349363803863525,
+    "mute": false,
+    "name": "Color Mapper",
+    "show_options": true,
+    "show_preview": false,
+    "texture_name": "",
+    "width": 200.0
+}
+#+end_src

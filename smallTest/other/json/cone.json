@@ -1,0 +1,80 @@
+{
+    "links": [
+        {
+            "from_node_name": "vtkConeSource",
+            "from_socket_identifier": "output",
+            "to_node_name": "VTK To Blender Mesh",
+            "to_socket_identifier": "input"
+        }
+    ],
+    "nodes": [
+        {
+            "bl_idname": "VTKConeSourceType",
+            "color": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "custom_code": "",
+            "height": 100.0,
+            "hide": false,
+            "label": "",
+            "location": [
+                -500.0,
+                300.0
+            ],
+            "m_Angle": 26.565052032470703,
+            "m_Capping": true,
+            "m_Center": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "m_Direction": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "m_Height": 1.0,
+            "m_ObjectName": "",
+            "m_Radius": 0.5,
+            "m_Resolution": 6,
+            "mute": false,
+            "name": "vtkConeSource",
+            "show_options": true,
+            "show_preview": false,
+            "width": 200.0
+        },
+        {
+            "bl_idname": "BVTK_Node_VTKToBlenderMeshType",
+            "color": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "create_all_verts": false,
+            "create_edges": true,
+            "create_faces": true,
+            "custom_code": "",
+            "generate_material": true,
+            "height": 100.0,
+            "hide": false,
+            "label": "",
+            "location": [
+                250.0,
+                300.0
+            ],
+            "m_Name": "mesh",
+            "motion_blur": false,
+            "motion_blur_by": "",
+            "motion_blur_time_step": 1.0,
+            "mute": false,
+            "name": "VTK To Blender Mesh",
+            "recalc_norms": false,
+            "show_options": true,
+            "show_preview": false,
+            "smooth": false,
+            "width": 200.0
+        }
+    ]
+}
